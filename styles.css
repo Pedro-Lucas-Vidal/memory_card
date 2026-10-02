@@ -1,0 +1,94 @@
+/* Zerando as configurações dos navegadores*/
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  /* Comportamento com border-box: O navegador mantém a largura total
+   exatamente em 100px. O padding e a borda são distribuídos para o lado
+   de dentro da caixa, reduzindo o espaço interno útil para o conteúdo, 
+   mas sem estourar o tamanho final definido. */   
+}
+
+/* Definição do corpo da página */
+body {
+  margin: auto;
+  height: 100vh;
+  /* Medidas absolutas
+  - cm (centímetro)
+  - pt (ponto) = 1.66 px ou pc (paica) = 12 pt
+  - in - polegadas */
+
+  /* Medidas relativas
+  - rem = 16px
+  - em = 16px (depende do elemento pai)
+  - vw (view width) e vh (view height) = 100% da janela */
+  display: block;
+  /* O display: flex é uma propriedade do CSS que transforma um elemento
+  em um contêiner flexível, organizando seus filhos de forma automática 
+  em linha ou coluna. */  
+}
+
+.header {
+  text-align: center;
+  font-size: medium;
+}
+/* Container principal 
+  Experimente usar medidas diferentes para ver os resultados
+*/
+.memory-game {
+  width: 50em; /* 1em = 16px */
+  height: 36em;
+  margin: auto;
+  background: #3d3fc3;
+  display: flex;
+  flex-wrap: wrap;
+  /* A propriedade flex-wrap do CSS define se os itens de um container
+  flexível devem permanecer em uma única linha ou quebrar em várias linhas
+   quando não houver espaço suficiente*/
+  perspective: 50em;
+  /* A função CSS perspective() define uma transformação que configura
+   a distância entre o usuário e o plano z=0.*/
+}
+
+/* Definição dos cartões */
+.memory-card {
+  width: calc(23% - 0.125em);
+  /* A função calc() CSS permite você executar cálculos quando especificar
+   os valores de propriedades no CSS. Pode ser utilizada em qualquer lugar, 
+   como <length>, <frequency>, <angle>, <time>, <percentage>, <number>, e <integer> é permitido.*/
+  height: calc(32% - 0.125em);
+  margin: auto;
+  position: relative;
+  transform: scale(1);
+  transform-style: preserve-3d;
+  transition: transform .5s;
+  box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+}
+
+/* Aplica nos cartões ativos, ou seja, que são clicados */
+.memory-card:active {
+  transform: scale(0.97);
+  transition: transform .2s;
+}
+
+/* Definição do movimento do cartão */
+.memory-card.flip {
+  transform: rotateY(180deg);
+}
+
+/* Definição das classes da frente e verso dos cartões */
+.front-face,
+.back-face {
+  /* Imagens em 64px */
+  width: 100%;
+  height: 100%;
+  padding: 1em;
+  position: absolute;
+  border-radius: .5em;
+  background: #85a2ba;
+  backface-visibility: hidden;
+}
+
+.back-face {
+  transform: rotateY(180deg);
+}
